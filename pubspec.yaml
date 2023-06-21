@@ -30,38 +30,38 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  #  flutter_slidable:
-  #  fluttertoast:
-  #  english_words:
-  #  backdrop:
-  #  convex_bottom_bar:
-  #  hidable:
-  #  animations:
-  #  url_launcher:
-  #  animated_radial_menu:
-  #  lottie:
-  #  animated_text_kit:
-  #  image_picker:
-  #  extended_image:
-  #  image:
-  #  video_player:
-  #  youtube_player_iframe: ^4.0.4
-  #  edge_detection:
-  #  sqflite:
-  #  provider:
-  #  flutter_riverpod:
-  #  widget_with_codeview:
-  #  flutter_markdown:
-  #  flutter_webview_plugin:
-  #  local_auth:
-  #  transparent_image:
-  #  shimmer:
-  #  share_plus:
-  #  markdown:
-  #  selectable:
-  #  flutter_quill:
-  #  super_editor:
-  #  flutter_highlight:
+  flutter_slidable:
+  fluttertoast:
+  english_words:
+  backdrop:
+  convex_bottom_bar:
+  hidable:
+  animations:
+  url_launcher:
+  animated_radial_menu:
+  lottie:
+  animated_text_kit:
+  image_picker:
+  extended_image:
+  image:
+  video_player:
+  youtube_player_iframe: ^4.0.4
+  # edge_detection:
+  sqflite:
+  provider:
+  flutter_riverpod:
+  widget_with_codeview:
+  flutter_markdown:
+  webview_flutter:
+  local_auth:
+  transparent_image:
+  shimmer:
+  share_plus:
+  markdown:
+  selectable:
+  flutter_quill:
+  super_editor:
+  flutter_highlight:
   # charts_flutter: ^0.12.0
   # intl: ^2.0.0
   #  fl_chart:
