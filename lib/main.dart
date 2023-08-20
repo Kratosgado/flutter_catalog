@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/components/lists/expansion_tile.dart';
+import 'package:flutter_catalog/components/appbars/sliver_appbar.dart';
 import 'package:flutter_catalog/components/lists/listwheel_scrollview.dart';
-import 'package:flutter_catalog/components/lists/reorderable_list.dart';
-import 'package:flutter_catalog/components/lists/swipe_dismiss.dart';
+import 'package:flutter_catalog/components/widgets/like_button.dart';
+import 'package:flutter_catalog/components/widgets/other_stateful_widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const ListWheelViewExample(),
+      body: const SliverAppBarExample(),
     );
   }
 }
