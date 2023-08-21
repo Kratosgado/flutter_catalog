@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/components/appbars/searchbar.dart';
 import 'package:flutter_catalog/components/appbars/sliver_appbar.dart';
-import 'package:flutter_catalog/components/lists/listwheel_scrollview.dart';
-import 'package:flutter_catalog/components/widgets/like_button.dart';
-import 'package:flutter_catalog/components/widgets/other_stateful_widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const SliverAppBarExample(),
+      body: const SearchBarExample(),
     );
   }
 }
