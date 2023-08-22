@@ -30,7 +30,7 @@ class _SearchBarExampleState extends State<SearchBarExample> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('English Words'),
+        title: const Text('Search Words'),
         actions: <Widget>[
           IconButton(
             tooltip: 'Search',
@@ -163,7 +163,7 @@ class SuggestionList extends StatelessWidget {
           title: RichText(
             text: TextSpan(
                 text: suggestion.substring(0, query.length),
-                style: textTheme.copyWith(fontWeight: FontWeight.bold),
+                style: textTheme.copyWith(color: Colors.amber),
                 children: <TextSpan>[
                   TextSpan(
                     text: suggestion.substring(query.length),
