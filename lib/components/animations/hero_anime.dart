@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animations/animations.dart';
 
 class HeroExample extends StatelessWidget {
   const HeroExample({super.key});
@@ -12,8 +13,9 @@ class HeroExample extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Card(
-            child: ListTile(
+          OpenContainer(
+            transitionDuration: const Duration(milliseconds: 500),
+            closedBuilder: (ctx, action) => ListTile(
               leading: GestureDetector(
                 onTap: () => viewProfileImage(context),
                 child: const Hero(
@@ -24,6 +26,11 @@ class HeroExample extends StatelessWidget {
                 ),
               ),
               title: const Text('Kratos Gado'),
+            ),
+            openBuilder: (ctx, action) => const Scaffold(
+              body: Center(
+                child: Text('New Page'),
+              ),
             ),
           )
         ],
