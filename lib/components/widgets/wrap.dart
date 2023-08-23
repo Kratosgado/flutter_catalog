@@ -11,7 +11,7 @@ class WrapExample extends StatelessWidget {
         runSpacing: 4,
         children: ['Prince', 'Mbeah', 'Essilfie', 'Killcode', 'Jeff', 'Sarpong']
             .map((name) => Chip(
-                  deleteIcon: Icon(Icons.cancel),
+                  deleteIcon: const Icon(Icons.cancel),
                   label: Text(name),
                   avatar: CircleAvatar(
                       backgroundColor: Colors.amber,

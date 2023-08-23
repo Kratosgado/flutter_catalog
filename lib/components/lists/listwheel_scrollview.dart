@@ -20,10 +20,10 @@ class _ListWheelViewExampleState extends State<ListWheelViewExample> {
           return ListTile(
             leading: Text(
               '$index',
-              style: TextStyle(fontSize: 50),
+              style: const TextStyle(fontSize: 50),
             ),
             title: Text('Tile $index'),
-            subtitle: Text('Description here'),
+            subtitle: const Text('Description here'),
           );
         },
       ),

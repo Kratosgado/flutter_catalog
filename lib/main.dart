@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/components/appbars/backdrop.dart';
-import 'package:flutter_catalog/components/appbars/searchbar.dart';
 
 void main() {
   runApp(const MyApp());

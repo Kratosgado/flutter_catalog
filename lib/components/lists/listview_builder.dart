@@ -6,14 +6,14 @@ class ListViewBuilderExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const numItems = 20;
-    const _biggerFont = TextStyle(fontSize: 18);
+    const biggerFont = TextStyle(fontSize: 18);
 
     Widget buildRow(int idx) {
       return ListTile(
         leading: CircleAvatar(
           child: Text("$idx"),
         ),
-        title: Text('Item $idx', style: _biggerFont),
+        title: Text('Item $idx', style: biggerFont),
         trailing: const Icon(Icons.dashboard),
       );
     }
