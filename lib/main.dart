@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/components/appbars/backdrop.dart';
 import 'package:flutter_catalog/components/appbars/searchbar.dart';
-import 'package:flutter_catalog/components/appbars/sliver_appbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Catalog',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        useMaterial3: false,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -53,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const SearchBarExample(),
+      body: const BackdropExample(),
     );
   }
 }
