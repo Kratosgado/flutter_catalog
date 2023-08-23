@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/components/appbars/backdrop.dart';
-import 'package:flutter_catalog/components/page_selector.dart';
+import 'package:flutter_catalog/components/animations/hero_anime.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const PageSelectorExample(),
+      body: const HeroExample(),
     );
   }
 }
