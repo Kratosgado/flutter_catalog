@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/components/appbars/backdrop.dart';
+import 'package:flutter_catalog/components/page_selector.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const BackdropExample(),
+      body: const PageSelectorExample(),
     );
   }
 }
