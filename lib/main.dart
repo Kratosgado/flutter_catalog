@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/components/animations/hero_anime.dart';
+import 'package:flutter_catalog/components/animations/radial_menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const HeroExample(),
+      body: const RadialMenuExample(),
     );
   }
 }
