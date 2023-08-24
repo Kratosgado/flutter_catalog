@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/components/animations/radial_menu.dart';
+import 'package:flutter_catalog/components/animations/text_kit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const RadialMenuExample(),
+      body: const AnimatedTextKitExample(),
     );
   }
 }
