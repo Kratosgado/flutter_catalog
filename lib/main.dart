@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/components/animations/radial_menu.dart';
-import 'package:flutter_catalog/components/animations/text_kit.dart';
 import 'package:flutter_catalog/components/persistence_state/sqflite_sql.dart';
 
 void main() {

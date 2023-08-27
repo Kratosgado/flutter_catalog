@@ -1,7 +1,9 @@
 import 'dart:io';
-import 'package:async/async.dart';
+// ignore: depend_on_referenced_packages
+import 'package:async/async.dart' show AsyncMemoizer;
 import 'package:english_words/english_words.dart' as english_words;
-import 'package:path/path.dart';
+// ignore: depend_on_referenced_packages
+import 'package:path/path.dart' show join;
 import 'package:sqflite/sqflite.dart';
 
 import 'package:flutter/material.dart';
