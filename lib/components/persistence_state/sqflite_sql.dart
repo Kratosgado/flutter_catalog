@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class TodoItem {
   final int? id;
   final String content;
-  final bool isDone;
+   bool isDone;
   final DateTime createdAt;
 
   TodoItem({this.id, required this.content, this.isDone = false, required this.createdAt});

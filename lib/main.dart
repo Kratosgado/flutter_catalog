@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/components/persistence_state/sembast_nosql.dart';
 import 'package:flutter_catalog/components/persistence_state/sqflite_sql.dart';
 
 void main() {
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const SqliteExample(),
+      body: const SembastExample(),
     );
   }
 }
