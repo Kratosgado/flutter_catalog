@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/components/persistence_state/hive_example.dart';
+import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
 import 'package:flutter_catalog/components/persistence_state/sembast_nosql.dart';
-import 'package:flutter_catalog/components/persistence_state/sqflite_sql.dart';
+import 'package:isar/isar.dart';
 
-void main() {
+void main() async {
+  await Isar.initializeIsarCore();
   runApp(const MyApp());
 }
 
@@ -52,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           )),
-      body: const SembastExample(),
+      body: IsarExample(),
     );
   }
 }

@@ -1,10 +1,12 @@
 import 'package:isar/isar.dart';
 
-@collection
+part 'todo_isar.g.dart';
+
+@Collection()
 class TodoItem {
   Id id = Isar.autoIncrement;
   String? content;
-  bool? isDone;
+  bool isDone;
   DateTime? createdAt;
 
   TodoItem({
