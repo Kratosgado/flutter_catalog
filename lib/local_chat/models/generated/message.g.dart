@@ -36,6 +36,11 @@ const MessageSchema = CollectionSchema(
       id: 3,
       name: r'text',
       type: IsarType.string,
+    ),
+    r'timestamp': PropertySchema(
+      id: 4,
+      name: r'timestamp',
+      type: IsarType.dateTime,
     )
   },
   estimateSize: _messageEstimateSize,
@@ -44,7 +49,15 @@ const MessageSchema = CollectionSchema(
   deserializeProp: _messageDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {},
+  links: {
+    r'conversation': LinkSchema(
+      id: -5284668160807931000,
+      name: r'conversation',
+      target: r'Conversation',
+      single: true,
+      linkName: r'messages',
+    )
+  },
   embeddedSchemas: {},
   getId: _messageGetId,
   getLinks: _messageGetLinks,
@@ -83,6 +96,7 @@ void _messageSerialize(
   writer.writeBool(offsets[1], object.onlyEmoji);
   writer.writeLong(offsets[2], object.senderId);
   writer.writeString(offsets[3], object.text);
+  writer.writeDateTime(offsets[4], object.timestamp);
 }
 
 Message _messageDeserialize(
@@ -96,6 +110,7 @@ Message _messageDeserialize(
     onlyEmoji: reader.readBoolOrNull(offsets[1]),
     senderId: reader.readLongOrNull(offsets[2]),
     text: reader.readStringOrNull(offsets[3]),
+    timestamp: reader.readDateTime(offsets[4]),
   );
   object.id = id;
   return object;
@@ -116,6 +131,8 @@ P _messageDeserializeProp<P>(
       return (reader.readLongOrNull(offset)) as P;
     case 3:
       return (reader.readStringOrNull(offset)) as P;
+    case 4:
+      return (reader.readDateTime(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -126,11 +143,12 @@ Id _messageGetId(Message object) {
 }
 
 List<IsarLinkBase<dynamic>> _messageGetLinks(Message object) {
-  return [];
+  return [object.conversation];
 }
 
 void _messageAttach(IsarCollection<dynamic> col, Id id, Message object) {
   object.id = id;
+  object.conversation.attach(col, col.isar.collection<Conversation>(), r'conversation', id);
 }
 
 extension MessageQueryWhereSort on QueryBuilder<Message, Message, QWhere> {
@@ -639,11 +657,75 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
       ));
     });
   }
+
+  QueryBuilder<Message, Message, QAfterFilterCondition> timestampEqualTo(DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'timestamp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Message, Message, QAfterFilterCondition> timestampGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'timestamp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Message, Message, QAfterFilterCondition> timestampLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'timestamp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Message, Message, QAfterFilterCondition> timestampBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'timestamp',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension MessageQueryObject on QueryBuilder<Message, Message, QFilterCondition> {}
 
-extension MessageQueryLinks on QueryBuilder<Message, Message, QFilterCondition> {}
+extension MessageQueryLinks on QueryBuilder<Message, Message, QFilterCondition> {
+  QueryBuilder<Message, Message, QAfterFilterCondition> conversation(FilterQuery<Conversation> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'conversation');
+    });
+  }
+
+  QueryBuilder<Message, Message, QAfterFilterCondition> conversationIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'conversation', 0, true, 0, true);
+    });
+  }
+}
 
 extension MessageQuerySortBy on QueryBuilder<Message, Message, QSortBy> {
   QueryBuilder<Message, Message, QAfterSortBy> sortByImageUrl() {
@@ -691,6 +773,18 @@ extension MessageQuerySortBy on QueryBuilder<Message, Message, QSortBy> {
   QueryBuilder<Message, Message, QAfterSortBy> sortByTextDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'text', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Message, Message, QAfterSortBy> sortByTimestamp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timestamp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Message, Message, QAfterSortBy> sortByTimestampDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timestamp', Sort.desc);
     });
   }
 }
@@ -755,6 +849,18 @@ extension MessageQuerySortThenBy on QueryBuilder<Message, Message, QSortThenBy> 
       return query.addSortBy(r'text', Sort.desc);
     });
   }
+
+  QueryBuilder<Message, Message, QAfterSortBy> thenByTimestamp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timestamp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Message, Message, QAfterSortBy> thenByTimestampDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timestamp', Sort.desc);
+    });
+  }
 }
 
 extension MessageQueryWhereDistinct on QueryBuilder<Message, Message, QDistinct> {
@@ -779,6 +885,12 @@ extension MessageQueryWhereDistinct on QueryBuilder<Message, Message, QDistinct>
   QueryBuilder<Message, Message, QDistinct> distinctByText({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'text', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<Message, Message, QDistinct> distinctByTimestamp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'timestamp');
     });
   }
 }
@@ -811,6 +923,12 @@ extension MessageQueryProperty on QueryBuilder<Message, Message, QQueryProperty>
   QueryBuilder<Message, String?, QQueryOperations> textProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'text');
+    });
+  }
+
+  QueryBuilder<Message, DateTime, QQueryOperations> timestampProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'timestamp');
     });
   }
 }

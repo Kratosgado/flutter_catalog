@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
+import 'package:flutter_catalog/local_chat/isar_service.dart';
+import 'package:flutter_catalog/local_chat/views/add_user_view.dart';
+import 'package:flutter_catalog/local_chat/views/conversation_view.dart';
+import 'package:flutter_catalog/local_chat/views/users_view.dart';
 import 'package:isar/isar.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Isar.initializeIsarCore();
-  runApp(const MyApp());
+  final chatService = ChatService();
+  runApp(MyApp(
+    chatService: chatService,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final ChatService chatService;
+  const MyApp({super.key, required this.chatService});
 
   // This widget is the root of your application.
   @override
@@ -19,7 +28,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ConversationsView(
+        chatService: chatService,
+      ),
+      onGenerateRoute: (RouteSettings routeSettings) {
+        return MaterialPageRoute<void>(
+          settings: routeSettings,
+          builder: (BuildContext context) {
+            switch (routeSettings.name) {
+              case UserSelectPage.routename:
+                return UserSelectPage(chatService: chatService);
+              case AddUserView.routename:
+                return AddUserView(chatService: chatService);
+              default:
+                return ConversationsView(chatService: chatService);
+            }
+          },
+        );
+      },
     );
   }
 }

@@ -14,5 +14,13 @@ class Message {
   String? imageUrl;
   bool? onlyEmoji;
 
-  Message({this.text, this.senderId, this.imageUrl, this.onlyEmoji});
+  DateTime timestamp;
+
+  Message({
+    this.text,
+    this.senderId,
+    this.imageUrl,
+    this.onlyEmoji,
+    required this.timestamp,
+  });
 }

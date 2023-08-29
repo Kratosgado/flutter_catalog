@@ -10,6 +10,36 @@ class ChatService {
     db = initDb();
   }
 
+  Future<void> addConversation(Conversation conversation) async {
+    final chat = await db;
+    chat.writeTxnSync(() => chat.conversations.putSync(conversation));
+  }
+
+  Future<void> deleteConversation(Conversation conversation) async {
+    final chat = await db;
+    chat.writeTxnSync(() => chat.conversations.deleteSync(conversation.id));
+  }
+
+  Future<void> cleanDb() async {
+    final chat = await db;
+    chat.writeTxnSync(() => chat.clear());
+  }
+
+  Stream<List<Conversation>> listenToConversations() async* {
+    final chat = await db;
+    yield* chat.conversations.where().watch(fireImmediately: true);
+  }
+
+  Stream<List<User>> listenToUsers() async* {
+    final chat = await db;
+    yield* chat.users.where().watch(fireImmediately: true);
+  }
+
+  Future<void> addUser(User user) async {
+    final chat = await db;
+    chat.writeTxnSync(() => chat.users.putSync(user));
+  }
+
   Future<Isar> initDb() async {
     final appDocsDir = await path_provider.getApplicationDocumentsDirectory();
     return await Isar.open([MessageSchema, ConversationSchema, UserSchema],
