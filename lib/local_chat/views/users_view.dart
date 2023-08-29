@@ -50,7 +50,7 @@ class UserSelectPage extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundImage: NetworkImage(userList[index].profilePicture!),
+                        backgroundImage: AssetImage(userList[index].profilePicture!),
                       ),
                       title: Text(
                         userList[index].username!,
