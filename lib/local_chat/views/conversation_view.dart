@@ -43,15 +43,18 @@ class ConversationsView extends StatelessWidget {
       );
     }
     return ListTile(
-      title: Text(
-        conversation.users.first.username!,
-        style: const TextStyle(
-          fontStyle: FontStyle.italic,
-          color: Colors.grey,
-          decoration: TextDecoration.lineThrough,
+      leading: Hero(
+        tag: 'profile_pic_tag',
+        child: CircleAvatar(
+          backgroundImage: AssetImage(conversation.users.first.profilePicture!),
         ),
       ),
-      subtitle: Text(conversation.messages.first.text!),
+      title: Text(
+        conversation.users.first.username!,
+      ),
+      subtitle: conversation.messages.isEmpty
+          ? const Text('No messages')
+          : Text(conversation.messages.first.text!),
       isThreeLine: true,
       trailing: IconButton(
         icon: const Icon(Icons.delete),

@@ -10,9 +10,12 @@ class ChatService {
     db = initDb();
   }
 
+  // Conversation Service
   Future<void> addConversation(Conversation conversation) async {
     final chat = await db;
-    chat.writeTxnSync(() => chat.conversations.putSync(conversation));
+    chat.writeTxnSync(() {
+      chat.conversations.putSync(conversation);
+    });
   }
 
   Future<void> deleteConversation(Conversation conversation) async {
@@ -30,6 +33,23 @@ class ChatService {
     yield* chat.conversations.where().watch(fireImmediately: true);
   }
 
+  // Chat convo service
+  Stream<List<Message>> listenToChat(Conversation conversation) async* {
+    final chat = await db;
+    yield* chat.messages
+        .filter()
+        .conversation((q) => q.idEqualTo(conversation.id))
+        .watch(fireImmediately: true);
+  }
+
+  // add message to convo
+  Future<void> sendMessage(Conversation conversation, Message message) async {
+    final chat = await db;
+    conversation.messages.add(message);
+    chat.writeTxnSync(() => conversation.messages.saveSync());
+  }
+
+  // User service
   Stream<List<User>> listenToUsers() async* {
     final chat = await db;
     yield* chat.users.where().watch(fireImmediately: true);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/local_chat/isar_service.dart';
+import 'package:flutter_catalog/local_chat/models/conversation.dart';
 import 'package:flutter_catalog/local_chat/views/add_user_view.dart';
+import 'package:flutter_catalog/local_chat/views/chat_view.dart';
 
 import '../models/user.dart';
 
@@ -14,7 +16,7 @@ class UserSelectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Conversations'),
+        title: const Text('Select User'),
         backgroundColor: Colors.indigo, // Change the app bar color
       ),
       body: Container(
@@ -27,7 +29,7 @@ class UserSelectPage extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(10.0),
         child: Card(
-          color: Colors.white,
+          color: Colors.black26,
           child: StreamBuilder<List<User>>(
             stream: chatService.listenToUsers(),
             builder: (context, snapshot) {
@@ -59,7 +61,15 @@ class UserSelectPage extends StatelessWidget {
                           fontSize: 16,
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        final conversation = Conversation()
+                          ..users.add(userList[index])
+                          ..users.add(userList[index]);
+                        chatService.addConversation(conversation);
+
+                        Navigator.of(context).popAndPushNamed(ChatView.routename,
+                            arguments: {chatService: chatService, conversation: conversation});
+                      },
                     ),
                   );
                 },
