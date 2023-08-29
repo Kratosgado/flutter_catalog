@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/components/persistence_state/hive_example.dart';
 import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
-import 'package:flutter_catalog/components/persistence_state/sembast_nosql.dart';
 import 'package:isar/isar.dart';
 
 void main() async {
