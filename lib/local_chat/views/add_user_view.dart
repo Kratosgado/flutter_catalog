@@ -75,7 +75,11 @@ class MemberRegistrationFormState extends State<AddUserView> {
                           height: 200,
                           width: 200,
                         ) // Show the selected image if available
-                      : const SizedBox.shrink(),
+                      : Image.asset(
+                          "assets/images/kratos.jpg",
+                          height: 200,
+                          width: 200,
+                        ),
                 ),
                 Center(
                   child: ElevatedButton(
@@ -132,10 +136,14 @@ class MemberRegistrationFormState extends State<AddUserView> {
                           ..username = nameController.text;
                         final appDir = await getApplicationDocumentsDirectory();
                         final imageDir = join(appDir.path, 'profile_pics');
-                        final imagePath = join(imageDir, imageFile!.path, '${newUser.id}');
+                        // final imagePath = join(imageDir, imageFile!.path, '${newUser.id}');
 
-                        newUser.profilePicture = imagePath;
-                        widget.chatService.addUser(newUser);
+                        newUser.profilePicture = "assets/images/kratos.jpg";
+                        await widget.chatService.addUser(newUser);
+
+                        if (mounted) {
+                          Navigator.of(context).pop();
+                        }
                       }
                     },
                     child: const Text('Add User'),
