@@ -50,17 +50,15 @@ class _ChatViewState extends State<ChatView> {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [Colors.amber, Colors.indigo],
+            colors: [Colors.indigo, Colors.amber],
           ),
         ),
         padding: const EdgeInsets.all(1.0),
-        child: Card(
-          child: Column(
-            children: [
-              buildMessages(),
-              buildInput(),
-            ],
-          ),
+        child: Column(
+          children: [
+            buildMessages(),
+            buildInput(),
+          ],
         ),
       ),
     );
@@ -88,21 +86,22 @@ class _ChatViewState extends State<ChatView> {
 
           final messageList = snapshot.data!.messages.toList();
 
-          return Expanded(
-            child: ListView.builder(
-              reverse: true,
-              itemCount: messageList.length,
-              itemBuilder: (context, index) {
-                final message = messageList[index];
-                final isCurrentUser = index % 2 == 0 ? true : false;
-                // final message = Message(text: text, timestamp: DateTime.now(), senderUid: sender);
+          return ListView.builder(
+            // reverse: true,
+            itemCount: messageList.length,
+            itemBuilder: (context, index) {
+              final message = messageList[index];
+              final isCurrentUser = index % 2 == 0 ? true : false;
+              // final message = Message(text: text, timestamp: DateTime.now(), senderUid: sender);
 
-                return chatMessage(
+              return GestureDetector(
+                onLongPress: () => widget.chatService.deleteMessage(widget.conversation, message),
+                child: chatMessage(
                   message,
                   isCurrentUser,
-                );
-              },
-            ),
+                ),
+              );
+            },
           );
         },
       ),

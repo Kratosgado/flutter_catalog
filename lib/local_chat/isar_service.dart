@@ -44,10 +44,21 @@ class ChatService {
   // add message to convo
   Future<void> sendMessage(Conversation conversation, Message message) async {
     final chat = await db;
-    chat.writeTxnSync(() => chat.messages.putSync(message));
-    conversation.messages.add(message);
-    chat.writeTxnSync(() => conversation.messages.saveSync());
+    chat.writeTxnSync(() {
+      chat.messages.putSync(message);
+      // conversation.messages.saveSync();
+      conversation.messages.add(message);
+      chat.conversations.putSync(conversation); // automatically saves links
+    });
     debugPrint("Chat added: ${message.text} ******************");
+  }
+
+  Future deleteMessage(Conversation conversation, Message message) async {
+    final chat = await db;
+    chat.writeTxnSync(() {
+      chat.messages.deleteSync(message.id);
+      chat.conversations.putSync(conversation);
+    });
   }
 
   // User service
@@ -70,6 +81,6 @@ class ChatService {
   Future<Isar> initDb() async {
     final appDocsDir = await path_provider.getApplicationDocumentsDirectory();
     return await Isar.open([MessageSchema, ConversationSchema, UserSchema],
-        directory: appDocsDir.path);
+        directory: appDocsDir.path, inspector: false);
   }
 }

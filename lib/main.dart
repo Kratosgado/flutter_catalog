@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         chatService: chatService,
       ),
       onGenerateRoute: (RouteSettings routeSettings) {
-        return MaterialPageRoute<void>(
+        return MaterialPageRoute(
           settings: routeSettings,
           builder: (BuildContext context) {
             switch (routeSettings.name) {
