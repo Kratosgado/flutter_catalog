@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../conversation.dart';
+part of 'conversation.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -30,6 +30,13 @@ const ConversationSchema = CollectionSchema(
       target: r'User',
       single: false,
       linkName: r'conversations',
+    ),
+    r'messages': LinkSchema(
+      id: 3447319214171122287,
+      name: r'messages',
+      target: r'Message',
+      single: false,
+      linkName: r'conversation',
     )
   },
   embeddedSchemas: {},
@@ -82,15 +89,18 @@ Id _conversationGetId(Conversation object) {
 }
 
 List<IsarLinkBase<dynamic>> _conversationGetLinks(Conversation object) {
-  return [object.users];
+  return [object.users, object.messages];
 }
 
-void _conversationAttach(IsarCollection<dynamic> col, Id id, Conversation object) {
+void _conversationAttach(
+    IsarCollection<dynamic> col, Id id, Conversation object) {
   object.id = id;
   object.users.attach(col, col.isar.collection<User>(), r'users', id);
+  object.messages.attach(col, col.isar.collection<Message>(), r'messages', id);
 }
 
-extension ConversationQueryWhereSort on QueryBuilder<Conversation, Conversation, QWhere> {
+extension ConversationQueryWhereSort
+    on QueryBuilder<Conversation, Conversation, QWhere> {
   QueryBuilder<Conversation, Conversation, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -98,7 +108,8 @@ extension ConversationQueryWhereSort on QueryBuilder<Conversation, Conversation,
   }
 }
 
-extension ConversationQueryWhere on QueryBuilder<Conversation, Conversation, QWhereClause> {
+extension ConversationQueryWhere
+    on QueryBuilder<Conversation, Conversation, QWhereClause> {
   QueryBuilder<Conversation, Conversation, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
@@ -108,7 +119,8 @@ extension ConversationQueryWhere on QueryBuilder<Conversation, Conversation, QWh
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterWhereClause> idNotEqualTo(Id id) {
+  QueryBuilder<Conversation, Conversation, QAfterWhereClause> idNotEqualTo(
+      Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -130,7 +142,8 @@ extension ConversationQueryWhere on QueryBuilder<Conversation, Conversation, QWh
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<Conversation, Conversation, QAfterWhereClause> idGreaterThan(
+      Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -165,8 +178,10 @@ extension ConversationQueryWhere on QueryBuilder<Conversation, Conversation, QWh
   }
 }
 
-extension ConversationQueryFilter on QueryBuilder<Conversation, Conversation, QFilterCondition> {
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> idEqualTo(Id value) {
+extension ConversationQueryFilter
+    on QueryBuilder<Conversation, Conversation, QFilterCondition> {
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> idEqualTo(
+      Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -219,34 +234,41 @@ extension ConversationQueryFilter on QueryBuilder<Conversation, Conversation, QF
   }
 }
 
-extension ConversationQueryObject on QueryBuilder<Conversation, Conversation, QFilterCondition> {}
+extension ConversationQueryObject
+    on QueryBuilder<Conversation, Conversation, QFilterCondition> {}
 
-extension ConversationQueryLinks on QueryBuilder<Conversation, Conversation, QFilterCondition> {
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> users(FilterQuery<User> q) {
+extension ConversationQueryLinks
+    on QueryBuilder<Conversation, Conversation, QFilterCondition> {
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> users(
+      FilterQuery<User> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'users');
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> usersLengthEqualTo(int length) {
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      usersLengthEqualTo(int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'users', length, true, length, true);
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> usersIsEmpty() {
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      usersIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'users', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> usersIsNotEmpty() {
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      usersIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'users', 0, false, 999999, true);
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> usersLengthLessThan(
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      usersLengthLessThan(
     int length, {
     bool include = false,
   }) {
@@ -255,7 +277,8 @@ extension ConversationQueryLinks on QueryBuilder<Conversation, Conversation, QFi
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> usersLengthGreaterThan(
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      usersLengthGreaterThan(
     int length, {
     bool include = false,
   }) {
@@ -264,21 +287,86 @@ extension ConversationQueryLinks on QueryBuilder<Conversation, Conversation, QFi
     });
   }
 
-  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> usersLengthBetween(
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      usersLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'users', lower, includeLower, upper, includeUpper);
+      return query.linkLength(
+          r'users', lower, includeLower, upper, includeUpper);
+    });
+  }
+
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition> messages(
+      FilterQuery<Message> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'messages');
+    });
+  }
+
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      messagesLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'messages', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      messagesIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'messages', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      messagesIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'messages', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      messagesLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'messages', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      messagesLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'messages', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<Conversation, Conversation, QAfterFilterCondition>
+      messagesLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'messages', lower, includeLower, upper, includeUpper);
     });
   }
 }
 
-extension ConversationQuerySortBy on QueryBuilder<Conversation, Conversation, QSortBy> {}
+extension ConversationQuerySortBy
+    on QueryBuilder<Conversation, Conversation, QSortBy> {}
 
-extension ConversationQuerySortThenBy on QueryBuilder<Conversation, Conversation, QSortThenBy> {
+extension ConversationQuerySortThenBy
+    on QueryBuilder<Conversation, Conversation, QSortThenBy> {
   QueryBuilder<Conversation, Conversation, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -292,9 +380,11 @@ extension ConversationQuerySortThenBy on QueryBuilder<Conversation, Conversation
   }
 }
 
-extension ConversationQueryWhereDistinct on QueryBuilder<Conversation, Conversation, QDistinct> {}
+extension ConversationQueryWhereDistinct
+    on QueryBuilder<Conversation, Conversation, QDistinct> {}
 
-extension ConversationQueryProperty on QueryBuilder<Conversation, Conversation, QQueryProperty> {
+extension ConversationQueryProperty
+    on QueryBuilder<Conversation, Conversation, QQueryProperty> {
   QueryBuilder<Conversation, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');

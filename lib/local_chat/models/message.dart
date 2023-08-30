@@ -2,12 +2,11 @@ import 'package:isar/isar.dart';
 
 import 'conversation.dart';
 
-part 'generated/message.g.dart';
+part 'message.g.dart';
 
 @Collection()
 class Message {
   Id id = Isar.autoIncrement;
-  @Backlink(to: 'messages')
   final conversation = IsarLink<Conversation>();
   String? text;
   int? senderId;

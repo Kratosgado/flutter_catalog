@@ -67,8 +67,8 @@ class UserSelectPage extends StatelessWidget {
                           ..users.add(userList[index]);
                         chatService.addConversation(conversation);
 
-                        Navigator.of(context).popAndPushNamed(ChatView.routename,
-                            arguments: {chatService: chatService, conversation: conversation});
+                        Navigator.of(context)
+                            .popAndPushNamed(ChatView.routename, arguments: conversation);
                       },
                     ),
                   );

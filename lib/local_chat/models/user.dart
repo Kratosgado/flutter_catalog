@@ -1,7 +1,7 @@
 import 'package:isar/isar.dart';
 import 'conversation.dart';
 
-part 'generated/user.g.dart';
+part 'user.g.dart';
 
 @Collection()
 class User {

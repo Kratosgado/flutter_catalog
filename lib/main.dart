@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
 import 'package:flutter_catalog/local_chat/isar_service.dart';
+import 'package:flutter_catalog/local_chat/models/conversation.dart';
 import 'package:flutter_catalog/local_chat/views/add_user_view.dart';
+import 'package:flutter_catalog/local_chat/views/chat_view.dart';
 import 'package:flutter_catalog/local_chat/views/conversation_view.dart';
 import 'package:flutter_catalog/local_chat/views/users_view.dart';
 import 'package:isar/isar.dart';
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
                 return UserSelectPage(chatService: chatService);
               case AddUserView.routename:
                 return AddUserView(chatService: chatService);
+              case ChatView.routename:
+                final Conversation args = routeSettings.arguments as Conversation;
+                return ChatView(chatService: chatService, conversation: args);
               default:
                 return ConversationsView(chatService: chatService);
             }

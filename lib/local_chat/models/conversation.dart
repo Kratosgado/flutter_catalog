@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import 'message.dart';
 import 'user.dart';
 
-part 'generated/conversation.g.dart';
+part 'conversation.g.dart';
 
 @Collection()
 class Conversation {
@@ -11,5 +11,6 @@ class Conversation {
   @Backlink(to: 'conversations')
   final users = IsarLinks<User>();
 
+  @Backlink(to: 'conversation')
   final messages = IsarLinks<Message>();
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/local_chat/models/user.dart';
-import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart'; // Add this line
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:path/path.dart';
 import 'dart:io';
 
 import '../isar_service.dart'; // Add this line
@@ -134,8 +133,8 @@ class MemberRegistrationFormState extends State<AddUserView> {
                           ..email = emailController.text
                           ..phone = phoneController.text
                           ..username = nameController.text;
-                        final appDir = await getApplicationDocumentsDirectory();
-                        final imageDir = join(appDir.path, 'profile_pics');
+                        // final appDir = await getApplicationDocumentsDirectory();
+                        // final imageDir = join(appDir.path, 'profile_pics');
                         // final imagePath = join(imageDir, imageFile!.path, '${newUser.id}');
 
                         newUser.profilePicture = "assets/images/kratos.jpg";

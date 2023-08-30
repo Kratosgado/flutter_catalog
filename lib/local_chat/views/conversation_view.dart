@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/local_chat/models/conversation.dart';
+import 'package:flutter_catalog/local_chat/views/chat_view.dart';
 import 'package:flutter_catalog/local_chat/views/users_view.dart';
 
 import '../isar_service.dart';
@@ -27,7 +28,7 @@ class ConversationsView extends StatelessWidget {
             final conversationList = snapshot.data!;
             return ListView.builder(
               itemCount: conversationList.length,
-              itemBuilder: (context, index) => converationTile(conversationList[index]),
+              itemBuilder: (context, index) => converationTile(context, conversationList[index]),
             );
           }
         },
@@ -36,7 +37,7 @@ class ConversationsView extends StatelessWidget {
     );
   }
 
-  ListTile converationTile(Conversation conversation) {
+  ListTile converationTile(context, Conversation conversation) {
     if (conversation.users.isEmpty) {
       return const ListTile(
         title: Text('no user in conversation'),
@@ -44,7 +45,7 @@ class ConversationsView extends StatelessWidget {
     }
     return ListTile(
       leading: Hero(
-        tag: 'profile_pic_tag',
+        tag: 'profile_pic_tag_${conversation.id}',
         child: CircleAvatar(
           backgroundImage: AssetImage(conversation.users.first.profilePicture!),
         ),
@@ -56,6 +57,7 @@ class ConversationsView extends StatelessWidget {
           ? const Text('No messages')
           : Text(conversation.messages.first.text!),
       isThreeLine: true,
+      onTap: () => Navigator.of(context).pushNamed(ChatView.routename, arguments: conversation),
       trailing: IconButton(
         icon: const Icon(Icons.delete),
         onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart' as english_words;
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:sembast/sembast.dart';

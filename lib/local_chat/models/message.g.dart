@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../message.dart';
+part of 'message.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -51,11 +51,10 @@ const MessageSchema = CollectionSchema(
   indexes: {},
   links: {
     r'conversation': LinkSchema(
-      id: -5284668160807931000,
+      id: -7483555114440002086,
       name: r'conversation',
       target: r'Conversation',
       single: true,
-      linkName: r'messages',
     )
   },
   embeddedSchemas: {},
@@ -148,7 +147,8 @@ List<IsarLinkBase<dynamic>> _messageGetLinks(Message object) {
 
 void _messageAttach(IsarCollection<dynamic> col, Id id, Message object) {
   object.id = id;
-  object.conversation.attach(col, col.isar.collection<Conversation>(), r'conversation', id);
+  object.conversation
+      .attach(col, col.isar.collection<Conversation>(), r'conversation', id);
 }
 
 extension MessageQueryWhereSort on QueryBuilder<Message, Message, QWhere> {
@@ -191,7 +191,8 @@ extension MessageQueryWhere on QueryBuilder<Message, Message, QWhereClause> {
     });
   }
 
-  QueryBuilder<Message, Message, QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<Message, Message, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -199,7 +200,8 @@ extension MessageQueryWhere on QueryBuilder<Message, Message, QWhereClause> {
     });
   }
 
-  QueryBuilder<Message, Message, QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<Message, Message, QAfterWhereClause> idLessThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -224,7 +226,8 @@ extension MessageQueryWhere on QueryBuilder<Message, Message, QWhereClause> {
   }
 }
 
-extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition> {
+extension MessageQueryFilter
+    on QueryBuilder<Message, Message, QFilterCondition> {
   QueryBuilder<Message, Message, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -381,7 +384,8 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
     });
   }
 
-  QueryBuilder<Message, Message, QAfterFilterCondition> imageUrlContains(String value,
+  QueryBuilder<Message, Message, QAfterFilterCondition> imageUrlContains(
+      String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -392,7 +396,8 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
     });
   }
 
-  QueryBuilder<Message, Message, QAfterFilterCondition> imageUrlMatches(String pattern,
+  QueryBuilder<Message, Message, QAfterFilterCondition> imageUrlMatches(
+      String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -437,7 +442,8 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
     });
   }
 
-  QueryBuilder<Message, Message, QAfterFilterCondition> onlyEmojiEqualTo(bool? value) {
+  QueryBuilder<Message, Message, QAfterFilterCondition> onlyEmojiEqualTo(
+      bool? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'onlyEmoji',
@@ -462,7 +468,8 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
     });
   }
 
-  QueryBuilder<Message, Message, QAfterFilterCondition> senderIdEqualTo(int? value) {
+  QueryBuilder<Message, Message, QAfterFilterCondition> senderIdEqualTo(
+      int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'senderId',
@@ -618,7 +625,8 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
     });
   }
 
-  QueryBuilder<Message, Message, QAfterFilterCondition> textContains(String value,
+  QueryBuilder<Message, Message, QAfterFilterCondition> textContains(
+      String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -629,7 +637,8 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
     });
   }
 
-  QueryBuilder<Message, Message, QAfterFilterCondition> textMatches(String pattern,
+  QueryBuilder<Message, Message, QAfterFilterCondition> textMatches(
+      String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -658,7 +667,8 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
     });
   }
 
-  QueryBuilder<Message, Message, QAfterFilterCondition> timestampEqualTo(DateTime value) {
+  QueryBuilder<Message, Message, QAfterFilterCondition> timestampEqualTo(
+      DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'timestamp',
@@ -711,10 +721,13 @@ extension MessageQueryFilter on QueryBuilder<Message, Message, QFilterCondition>
   }
 }
 
-extension MessageQueryObject on QueryBuilder<Message, Message, QFilterCondition> {}
+extension MessageQueryObject
+    on QueryBuilder<Message, Message, QFilterCondition> {}
 
-extension MessageQueryLinks on QueryBuilder<Message, Message, QFilterCondition> {
-  QueryBuilder<Message, Message, QAfterFilterCondition> conversation(FilterQuery<Conversation> q) {
+extension MessageQueryLinks
+    on QueryBuilder<Message, Message, QFilterCondition> {
+  QueryBuilder<Message, Message, QAfterFilterCondition> conversation(
+      FilterQuery<Conversation> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'conversation');
     });
@@ -789,7 +802,8 @@ extension MessageQuerySortBy on QueryBuilder<Message, Message, QSortBy> {
   }
 }
 
-extension MessageQuerySortThenBy on QueryBuilder<Message, Message, QSortThenBy> {
+extension MessageQuerySortThenBy
+    on QueryBuilder<Message, Message, QSortThenBy> {
   QueryBuilder<Message, Message, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -863,8 +877,10 @@ extension MessageQuerySortThenBy on QueryBuilder<Message, Message, QSortThenBy> 
   }
 }
 
-extension MessageQueryWhereDistinct on QueryBuilder<Message, Message, QDistinct> {
-  QueryBuilder<Message, Message, QDistinct> distinctByImageUrl({bool caseSensitive = true}) {
+extension MessageQueryWhereDistinct
+    on QueryBuilder<Message, Message, QDistinct> {
+  QueryBuilder<Message, Message, QDistinct> distinctByImageUrl(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'imageUrl', caseSensitive: caseSensitive);
     });
@@ -882,7 +898,8 @@ extension MessageQueryWhereDistinct on QueryBuilder<Message, Message, QDistinct>
     });
   }
 
-  QueryBuilder<Message, Message, QDistinct> distinctByText({bool caseSensitive = true}) {
+  QueryBuilder<Message, Message, QDistinct> distinctByText(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'text', caseSensitive: caseSensitive);
     });
@@ -895,7 +912,8 @@ extension MessageQueryWhereDistinct on QueryBuilder<Message, Message, QDistinct>
   }
 }
 
-extension MessageQueryProperty on QueryBuilder<Message, Message, QQueryProperty> {
+extension MessageQueryProperty
+    on QueryBuilder<Message, Message, QQueryProperty> {
   QueryBuilder<Message, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../user.dart';
+part of 'user.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -165,7 +165,8 @@ List<IsarLinkBase<dynamic>> _userGetLinks(User object) {
 void _userAttach(IsarCollection<dynamic> col, Id id, User object) {
   object.id = id;
   object.friends.attach(col, col.isar.collection<User>(), r'friends', id);
-  object.conversations.attach(col, col.isar.collection<Conversation>(), r'conversations', id);
+  object.conversations
+      .attach(col, col.isar.collection<Conversation>(), r'conversations', id);
 }
 
 extension UserQueryWhereSort on QueryBuilder<User, User, QWhere> {
@@ -208,7 +209,8 @@ extension UserQueryWhere on QueryBuilder<User, User, QWhereClause> {
     });
   }
 
-  QueryBuilder<User, User, QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<User, User, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -216,7 +218,8 @@ extension UserQueryWhere on QueryBuilder<User, User, QWhereClause> {
     });
   }
 
-  QueryBuilder<User, User, QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<User, User, QAfterWhereClause> idLessThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -711,7 +714,8 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
     });
   }
 
-  QueryBuilder<User, User, QAfterFilterCondition> profilePictureContains(String value,
+  QueryBuilder<User, User, QAfterFilterCondition> profilePictureContains(
+      String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -722,7 +726,8 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
     });
   }
 
-  QueryBuilder<User, User, QAfterFilterCondition> profilePictureMatches(String pattern,
+  QueryBuilder<User, User, QAfterFilterCondition> profilePictureMatches(
+      String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -866,7 +871,8 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
     });
   }
 
-  QueryBuilder<User, User, QAfterFilterCondition> usernameMatches(String pattern,
+  QueryBuilder<User, User, QAfterFilterCondition> usernameMatches(
+      String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -905,7 +911,8 @@ extension UserQueryLinks on QueryBuilder<User, User, QFilterCondition> {
     });
   }
 
-  QueryBuilder<User, User, QAfterFilterCondition> friendsLengthEqualTo(int length) {
+  QueryBuilder<User, User, QAfterFilterCondition> friendsLengthEqualTo(
+      int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'friends', length, true, length, true);
     });
@@ -948,17 +955,20 @@ extension UserQueryLinks on QueryBuilder<User, User, QFilterCondition> {
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'friends', lower, includeLower, upper, includeUpper);
+      return query.linkLength(
+          r'friends', lower, includeLower, upper, includeUpper);
     });
   }
 
-  QueryBuilder<User, User, QAfterFilterCondition> conversations(FilterQuery<Conversation> q) {
+  QueryBuilder<User, User, QAfterFilterCondition> conversations(
+      FilterQuery<Conversation> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'conversations');
     });
   }
 
-  QueryBuilder<User, User, QAfterFilterCondition> conversationsLengthEqualTo(int length) {
+  QueryBuilder<User, User, QAfterFilterCondition> conversationsLengthEqualTo(
+      int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'conversations', length, true, length, true);
     });
@@ -985,7 +995,8 @@ extension UserQueryLinks on QueryBuilder<User, User, QFilterCondition> {
     });
   }
 
-  QueryBuilder<User, User, QAfterFilterCondition> conversationsLengthGreaterThan(
+  QueryBuilder<User, User, QAfterFilterCondition>
+      conversationsLengthGreaterThan(
     int length, {
     bool include = false,
   }) {
@@ -1001,7 +1012,8 @@ extension UserQueryLinks on QueryBuilder<User, User, QFilterCondition> {
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'conversations', lower, includeLower, upper, includeUpper);
+      return query.linkLength(
+          r'conversations', lower, includeLower, upper, includeUpper);
     });
   }
 }
@@ -1143,7 +1155,8 @@ extension UserQuerySortThenBy on QueryBuilder<User, User, QSortThenBy> {
 }
 
 extension UserQueryWhereDistinct on QueryBuilder<User, User, QDistinct> {
-  QueryBuilder<User, User, QDistinct> distinctByEmail({bool caseSensitive = true}) {
+  QueryBuilder<User, User, QDistinct> distinctByEmail(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'email', caseSensitive: caseSensitive);
     });
@@ -1155,19 +1168,23 @@ extension UserQueryWhereDistinct on QueryBuilder<User, User, QDistinct> {
     });
   }
 
-  QueryBuilder<User, User, QDistinct> distinctByPhone({bool caseSensitive = true}) {
+  QueryBuilder<User, User, QDistinct> distinctByPhone(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'phone', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<User, User, QDistinct> distinctByProfilePicture({bool caseSensitive = true}) {
+  QueryBuilder<User, User, QDistinct> distinctByProfilePicture(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'profilePicture', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'profilePicture',
+          caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<User, User, QDistinct> distinctByUsername({bool caseSensitive = true}) {
+  QueryBuilder<User, User, QDistinct> distinctByUsername(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'username', caseSensitive: caseSensitive);
     });

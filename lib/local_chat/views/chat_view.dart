@@ -38,7 +38,7 @@ class _ChatViewState extends State<ChatView> {
         title: Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(widget.conversation.users.first.profilePicture!),
+              backgroundImage: AssetImage(widget.conversation.users.first.profilePicture!),
             ),
             const SizedBox(width: 8.0),
             Text(widget.conversation.users.first.profilePicture!),
@@ -77,7 +77,7 @@ class _ChatViewState extends State<ChatView> {
 
   Widget buildMessages() {
     return Expanded(
-      child: StreamBuilder<List<Message>>(
+      child: StreamBuilder<Conversation?>(
         stream: widget.chatService.listenToChat(widget.conversation),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -86,7 +86,7 @@ class _ChatViewState extends State<ChatView> {
             );
           }
 
-          final messageList = snapshot.data!;
+          final messageList = snapshot.data!.messages.toList();
 
           return Expanded(
             child: ListView.builder(

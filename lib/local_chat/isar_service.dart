@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_catalog/local_chat/models/conversation.dart';
 import 'package:flutter_catalog/local_chat/models/message.dart';
 import 'package:flutter_catalog/local_chat/models/user.dart';
@@ -8,6 +9,7 @@ class ChatService {
   late Future<Isar> db;
   ChatService() {
     db = initDb();
+    optimizeDb();
   }
 
   // Conversation Service
@@ -34,19 +36,18 @@ class ChatService {
   }
 
   // Chat convo service
-  Stream<List<Message>> listenToChat(Conversation conversation) async* {
+  Stream<Conversation?> listenToChat(Conversation conversation) async* {
     final chat = await db;
-    yield* chat.messages
-        .filter()
-        .conversation((q) => q.idEqualTo(conversation.id))
-        .watch(fireImmediately: true);
+    yield* chat.conversations.watchObject(conversation.id, fireImmediately: true);
   }
 
   // add message to convo
   Future<void> sendMessage(Conversation conversation, Message message) async {
     final chat = await db;
+    chat.writeTxnSync(() => chat.messages.putSync(message));
     conversation.messages.add(message);
     chat.writeTxnSync(() => conversation.messages.saveSync());
+    debugPrint("Chat added: ${message.text} ******************");
   }
 
   // User service
@@ -60,9 +61,15 @@ class ChatService {
     chat.writeTxnSync(() => chat.users.putSync(user));
   }
 
+  Future<void> optimizeDb() async {
+    final chat = await db;
+    chat.writeTxnSync(() => chat.conversations.filter().usersIsEmpty().deleteAllSync());
+    // chat.writeTxnSync(() => chat.conversations.where().deleteAllSync());
+  }
+
   Future<Isar> initDb() async {
     final appDocsDir = await path_provider.getApplicationDocumentsDirectory();
     return await Isar.open([MessageSchema, ConversationSchema, UserSchema],
-        directory: appDocsDir.path, inspector: true);
+        directory: appDocsDir.path);
   }
 }

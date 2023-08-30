@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart' as english_words;
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
@@ -38,9 +39,7 @@ class _HiveExampleState extends State<HiveExample> {
     }
     // open the hive box so that we can later call Hive.box(<name>) to use it
     await Hive.openBox<TodoItem>(kHiveBoxName);
-    final List<TodoItem> todos = getTodoItems();
     debugPrint('Hive initialization done, todo items int he db are:');
-    todos.forEach(print);
     return true;
   }
 
