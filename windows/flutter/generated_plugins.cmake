@@ -3,7 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  desktop_webview_auth
   file_selector_windows
+  firebase_core
   isar_flutter_libs
   local_auth_windows
   pasteboard
