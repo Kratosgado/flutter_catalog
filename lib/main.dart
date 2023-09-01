@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/blog_sample/homepage.dart';
 import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
 import 'package:flutter_catalog/local_chat/isar_service.dart';
 import 'package:flutter_catalog/local_chat/models/conversation.dart';
@@ -30,27 +31,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
       ),
-      home: ConversationsView(
-        chatService: chatService,
-      ),
-      onGenerateRoute: (RouteSettings routeSettings) {
-        return MaterialPageRoute(
-          settings: routeSettings,
-          builder: (BuildContext context) {
-            switch (routeSettings.name) {
-              case UserSelectPage.routename:
-                return UserSelectPage(chatService: chatService);
-              case AddUserView.routename:
-                return AddUserView(chatService: chatService);
-              case ChatView.routename:
-                final Conversation args = routeSettings.arguments as Conversation;
-                return ChatView(chatService: chatService, conversation: args);
-              default:
-                return ConversationsView(chatService: chatService);
-            }
-          },
-        );
-      },
+      home: const HomePage(),
+      // ),
+      // onGenerateRoute: (RouteSettings routeSettings) {
+      //   return MaterialPageRoute(
+      //     settings: routeSettings,
+      //     builder: (BuildContext context) {
+      //       switch (routeSettings.name) {
+      //         case UserSelectPage.routename:
+      //           return UserSelectPage(chatService: chatService);
+      //         case AddUserView.routename:
+      //           return AddUserView(chatService: chatService);
+      //         case ChatView.routename:
+      //           final Conversation args = routeSettings.arguments as Conversation;
+      //           return ChatView(chatService: chatService, conversation: args);
+      //         default:
+      //           return ConversationsView(chatService: chatService);
+      //       }
+      //     },
+      //   );
+      // },
     );
   }
 }
