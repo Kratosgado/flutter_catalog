@@ -5,6 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 class IntroductionScreenExample extends StatelessWidget {
   const IntroductionScreenExample({super.key});
 
+  static const routename = 'introductory';
+
   static MaterialPageRoute route() => MaterialPageRoute(
       builder: (_) => const Scaffold(
               body: SafeArea(
@@ -24,7 +26,9 @@ class IntroductionScreenExample extends StatelessWidget {
         dotsFlex: 3,
         pages: [
           PageViewModel(titleWidget: const Text('title'), body: 'Welcome to the flutter community'),
-          PageViewModel(title: 'the second page', body: 'You cal find many examples')
+          PageViewModel(title: 'the second page', body: 'You cal find many examples'),
+          PageViewModel(titleWidget: const Text('title'), body: 'Welcome to the flutter community'),
+          PageViewModel(title: 'the second page', body: 'You cal find many examples'),
         ],
       ),
     );

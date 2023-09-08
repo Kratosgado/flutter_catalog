@@ -6,6 +6,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:isar/isar.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import 'components/advanced/introductory.dart';
 import 'local_chat/models/conversation.dart';
 import 'local_chat/views/add_user_view.dart';
 import 'local_chat/views/chat_view.dart';
@@ -34,27 +35,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
       ),
-      home: IntroductionScreen(),
-      // initialRoute: ConversationsView.routename,
-      // // ),
-      // onGenerateRoute: (RouteSettings routeSettings) {
-      //   return MaterialPageRoute(
-      //     settings: routeSettings,
-      //     builder: (BuildContext context) {
-      //       switch (routeSettings.name) {
-      //         case UserSelectPage.routename:
-      //           return UserSelectPage(chatService: chatService);
-      //         case AddUserView.routename:
-      //           return AddUserView(chatService: chatService);
-      //         case ChatView.routename:
-      //           final Conversation args = routeSettings.arguments as Conversation;
-      //           return ChatView(chatService: chatService, conversation: args);
-      //         default:
-      //           return ConversationsView(chatService: chatService);
-      //       }
-      //     },
-      //   );
-      // },
+      // home: const IntroductionScreenExample(),
+      initialRoute: IntroductionScreenExample.routename,
+      // ),
+      onGenerateRoute: (RouteSettings routeSettings) {
+        return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (BuildContext context) {
+            switch (routeSettings.name) {
+              case UserSelectPage.routename:
+                return UserSelectPage(chatService: chatService);
+              case AddUserView.routename:
+                return AddUserView(chatService: chatService);
+              case ChatView.routename:
+                final Conversation args = routeSettings.arguments as Conversation;
+                return ChatView(chatService: chatService, conversation: args);
+              default:
+                return ConversationsView(chatService: chatService);
+            }
+          },
+        );
+      },
     );
   }
 }

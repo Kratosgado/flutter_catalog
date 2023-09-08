@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "365896204454",
+    "firebase_url": "https://fluttercatalog-d57dd-default-rtdb.firebaseio.com",
     "project_id": "fluttercatalog-d57dd",
     "storage_bucket": "fluttercatalog-d57dd.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "365896204454-hef6h2i5lpakffv8ad5jpna3t249msp1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_catalog",
+            "certificate_hash": "cac172f2dc0b205bed9edf7b17c71997a4e8c22b"
+          }
+        },
         {
           "client_id": "365896204454-7bgcuh5jd57b5aplbrv4viisc7rijc8e.apps.googleusercontent.com",
           "client_type": 3
