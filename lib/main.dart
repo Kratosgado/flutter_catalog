@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/blog_sample/homepage.dart';
@@ -24,6 +25,30 @@ void main() async {
   ));
 }
 
+class DevicePreviewExample extends StatefulWidget {
+  const DevicePreviewExample({required this.chatService, super.key});
+
+  final ChatService chatService;
+
+  @override
+  State<DevicePreviewExample> createState() => _DevicePreviewExampleState();
+}
+
+class _DevicePreviewExampleState extends State<DevicePreviewExample> {
+  @override
+  Widget build(BuildContext context) {
+    return DevicePreview(
+      enabled: true,
+      builder: (_) => MyApp(
+        chatService: widget.chatService,
+      ),
+      tools: const [
+        ...DevicePreview.defaultTools,
+      ],
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   final ChatService chatService;
   const MyApp({super.key, required this.chatService});
@@ -34,6 +59,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Catalog',
       debugShowCheckedModeBanner: false,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       theme: ThemeData(
         useMaterial3: false,
       ),
