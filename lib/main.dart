@@ -1,5 +1,7 @@
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/blog_sample/homepage.dart';
+import 'package:flutter_catalog/components/advanced/feature_discovery.dart';
 import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
 import 'package:flutter_catalog/local_chat/isar_service.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -50,8 +52,12 @@ class MyApp extends StatelessWidget {
               case ChatView.routename:
                 final Conversation args = routeSettings.arguments as Conversation;
                 return ChatView(chatService: chatService, conversation: args);
-              default:
+              case FeatureDiscoveryExample.routename:
+                return const FeatureDiscoveryExample();
+              case ConversationsView.routename:
                 return ConversationsView(chatService: chatService);
+              default:
+                return const IntroductionScreenExample();
             }
           },
         );

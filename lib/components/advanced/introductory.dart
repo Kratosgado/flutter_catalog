@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/components/advanced/feature_discovery.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,7 +22,7 @@ class IntroductionScreenExample extends StatelessWidget {
         next: const Icon(Icons.navigate_next),
         showSkipButton: true,
         skip: const Text('Skip'),
-        onDone: Navigator.of(context).pop,
+        onDone: () => Navigator.of(context).popAndPushNamed(FeatureDiscoveryExample.routename),
         done: const Text('Done'),
         dotsFlex: 3,
         pages: [
