@@ -127,19 +127,27 @@ class _ChatViewState extends State<ChatView> {
           ],
           Row(
             children: [
-              IconButton(
-                icon: const Icon(Icons.image),
-                onPressed: () {
-                  selectImage();
-                },
-              ),
               Expanded(
                 child: TextField(
                   controller: textEditingController,
+                  maxLines: null,
                   decoration: InputDecoration(
-                    icon: IconButton(
-                      icon: const Icon(Icons.emoji_emotions),
-                      onPressed: () {},
+                    prefixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          color: Colors.blue,
+                          icon: const Icon(Icons.image),
+                          onPressed: () {
+                            selectImage();
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.emoji_emotions),
+                          color: Colors.blue,
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
                     hintText: 'Type a message...',
                     filled: true,
@@ -147,37 +155,66 @@ class _ChatViewState extends State<ChatView> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.send_rounded),
+                      color: Colors.blue,
+                      onPressed: () async {
+                        final text = textEditingController.text.trim();
+
+                        if (text.isNotEmpty || selectedImage != null) {
+                          // Upload the image to Firebase Storage if selected
+                          String? imageUrl;
+                          // if (selectedImage != null) {
+                          //   imageUrl = await uploadImage(selectedImage!);
+                          // }
+
+                          final message = Message(
+                            text: text,
+                            senderId: widget.conversation.users.first.id,
+                            timestamp: DateTime.now(),
+                            imageUrl: imageUrl,
+                          );
+
+                          await widget.chatService.sendMessage(widget.conversation, message);
+
+                          // Clear the selected image and text input
+                          selectedImage = null;
+                          textEditingController.clear();
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
               const SizedBox(width: 8.0),
-              IconButton(
-                icon: const Icon(Icons.send_rounded),
-                onPressed: () async {
-                  final text = textEditingController.text.trim();
+              // IconButton(
+              //   icon: const Icon(Icons.send_rounded),
+              //   color: Colors.white,
+              //   onPressed: () async {
+              //     final text = textEditingController.text.trim();
 
-                  if (text.isNotEmpty || selectedImage != null) {
-                    // Upload the image to Firebase Storage if selected
-                    String? imageUrl;
-                    // if (selectedImage != null) {
-                    //   imageUrl = await uploadImage(selectedImage!);
-                    // }
+              //     if (text.isNotEmpty || selectedImage != null) {
+              //       // Upload the image to Firebase Storage if selected
+              //       String? imageUrl;
+              //       // if (selectedImage != null) {
+              //       //   imageUrl = await uploadImage(selectedImage!);
+              //       // }
 
-                    final message = Message(
-                      text: text,
-                      senderId: widget.conversation.users.first.id,
-                      timestamp: DateTime.now(),
-                      imageUrl: imageUrl,
-                    );
+              //       final message = Message(
+              //         text: text,
+              //         senderId: widget.conversation.users.first.id,
+              //         timestamp: DateTime.now(),
+              //         imageUrl: imageUrl,
+              //       );
 
-                    await widget.chatService.sendMessage(widget.conversation, message);
+              //       await widget.chatService.sendMessage(widget.conversation, message);
 
-                    // Clear the selected image and text input
-                    selectedImage = null;
-                    textEditingController.clear();
-                  }
-                },
-              ),
+              //       // Clear the selected image and text input
+              //       selectedImage = null;
+              //       textEditingController.clear();
+              //     }
+              //   },
+              // ),
             ],
           ),
         ],
