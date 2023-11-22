@@ -1,13 +1,8 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/blog_sample/homepage.dart';
 import 'package:flutter_catalog/components/advanced/feature_discovery.dart';
 import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
 import 'package:flutter_catalog/local_chat/isar_service.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 import 'package:isar/isar.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 import 'components/advanced/introductory.dart';
 import 'local_chat/models/conversation.dart';
@@ -25,29 +20,6 @@ void main() async {
   ));
 }
 
-class DevicePreviewExample extends StatefulWidget {
-  const DevicePreviewExample({required this.chatService, super.key});
-
-  final ChatService chatService;
-
-  @override
-  State<DevicePreviewExample> createState() => _DevicePreviewExampleState();
-}
-
-class _DevicePreviewExampleState extends State<DevicePreviewExample> {
-  @override
-  Widget build(BuildContext context) {
-    return DevicePreview(
-      enabled: true,
-      builder: (_) => MyApp(
-        chatService: widget.chatService,
-      ),
-      tools: const [
-        ...DevicePreview.defaultTools,
-      ],
-    );
-  }
-}
 
 class MyApp extends StatelessWidget {
   final ChatService chatService;
@@ -59,8 +31,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Catalog',
       debugShowCheckedModeBanner: false,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
       theme: ThemeData(
         useMaterial3: false,
       ),
