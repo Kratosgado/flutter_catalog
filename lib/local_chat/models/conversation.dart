@@ -13,4 +13,5 @@ class Conversation {
 
   @Backlink(to: 'conversation')
   final messages = IsarLinks<Message>();
+
 }

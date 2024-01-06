@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/components/advanced/feature_discovery.dart';
+import 'package:flutter_catalog/components/advanced/shimmer.dart';
 import 'package:flutter_catalog/components/persistence_state/isar_example.dart';
 import 'package:flutter_catalog/local_chat/isar_service.dart';
 import 'package:isar/isar.dart';
@@ -20,7 +21,6 @@ void main() async {
   ));
 }
 
-
 class MyApp extends StatelessWidget {
   final ChatService chatService;
   const MyApp({super.key, required this.chatService});
@@ -35,17 +35,20 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       // home: const IntroductionScreenExample(),
-      initialRoute: IntroductionScreenExample.routename,
+      initialRoute: ShimmerExample.routeName,
       // ),
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute(
           settings: routeSettings,
           builder: (BuildContext context) {
             switch (routeSettings.name) {
+              case ShimmerExample.routeName:
+                return const ShimmerExample();
               case UserSelectPage.routename:
                 return UserSelectPage(chatService: chatService);
               case AddUserView.routename:
                 return AddUserView(chatService: chatService);
+
               case ChatView.routename:
                 final Conversation args = routeSettings.arguments as Conversation;
                 return ChatView(chatService: chatService, conversation: args);

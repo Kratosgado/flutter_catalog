@@ -52,8 +52,10 @@ class _HiveExampleState extends State<HiveExample> {
   // returns all the todo items in the db
   List<TodoItem> getTodoItems() {
     final box = Hive.box<TodoItem>(kHiveBoxName);
+
     return box.values.toList();
   }
+
 
   // adds a new todo item to the db
   Future<void> addTodoItem(TodoItem todo) async {
